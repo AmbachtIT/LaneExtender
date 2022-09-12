@@ -5,6 +5,7 @@ using System.Text;
 using ColossalFramework;
 using ColossalFramework.Plugins;
 using ColossalFramework.UI;
+using ModsCommon.Utilities;
 using UnityEngine;
 
 namespace LaneExtender
@@ -40,12 +41,17 @@ namespace LaneExtender
 
         protected override void OnEnable()
         {
-            DebugOutputPanel.AddMessage(PluginManager.MessageType.Message, "LaneExtenderTool: Enabled");
+
         }
 
         protected override void OnDisable()
         {
-            DebugOutputPanel.AddMessage(PluginManager.MessageType.Message, "LaneExtenderTool: Disabled");
+
+        }
+
+        public override void RenderOverlay(RenderManager.CameraInfo cameraInfo)
+        {
+            var data = new OverlayData(cameraInfo);
         }
     }
 }

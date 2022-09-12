@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net3.5</TargetFramework>
+	  <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
@@ -44,6 +45,10 @@
       <HintPath>$(ManagedDLLPath)\UnityEngine.UI.dll</HintPath>
       <Private>false</Private>
 	</Reference>
+  </ItemGroup>
+	
+  <ItemGroup>
+    <Folder Include="ModsCommon\" />
   </ItemGroup>
 
 </Project>
