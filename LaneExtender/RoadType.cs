@@ -10,5 +10,9 @@ namespace LaneExtender
         public string Name { get; set; }
         public int LaneCount { get; set; }
 
+        public bool IsEnabled { get; private set; }
+
+        public void Enable() => IsEnabled = true;
+
     }
 }

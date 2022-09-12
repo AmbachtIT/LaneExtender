@@ -1,4 +1,5 @@
 ﻿using System;
+using ColossalFramework.Plugins;
 using ICities;
 using UnityEngine;
 
@@ -15,8 +16,20 @@ namespace LaneExtender
 
         public override void OnCreated(ILoading loading)
         {
-            base.OnCreated(loading);
-
+            for (uint i = 0; i < PrefabCollection<NetInfo>.PrefabCount(); ++i)
+            {
+                var info = PrefabCollection<NetInfo>.GetPrefab(i);
+                if (info?.GetAI() is RoadAI)
+                {
+                    // This is a road prefab
+                    var road = Network.GetRoad(info.name);
+                    if (road != null)
+                    {
+                        road.Enable();
+                        _log.Info($"Enabled road {road.Name}");
+                    }
+                }
+            }
         }
 
 
@@ -72,6 +85,8 @@ namespace LaneExtender
         {
             LaneExtenderTool.Instance?.Uninstall();
         }
+
+        private readonly Logger _log = new Logger();
 
     }
 }

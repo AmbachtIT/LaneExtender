@@ -165,7 +165,7 @@ namespace LaneExtender
                 return Color.yellow;
             }
 
-            return Color.blue;
+            return _colorBlue;
         }
 
         private ref NetSegment GetHoveringSegment()
@@ -174,6 +174,9 @@ namespace LaneExtender
         }
 
         private readonly Logger _log = new Logger();
+
+        private readonly Color _colorBlue = new Color(128, 128, 255, 255);
+
     }
 
 }
