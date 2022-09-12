@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LaneExtender
 {
-    public class LaneExtenderMod : LoadingExtensionBase, IUserMod
+    public partial class LaneExtenderMod : LoadingExtensionBase, IUserMod
     {
         public string Name => "Lane Extender";
 
