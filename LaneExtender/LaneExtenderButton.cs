@@ -6,11 +6,13 @@ using System.Text;
 using ColossalFramework;
 using ColossalFramework.Plugins;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LaneExtender
 {
     public class LaneExtenderButton : UIButton
     {
+
 
         public void OnGUI()
         {
@@ -18,7 +20,7 @@ namespace LaneExtender
             {
                 if (LaneExtenderTool.ToggleKey.IsPressed(Event.current))
                 {
-                    LaneExtenderTool.Instance.enabled = !LaneExtenderTool.Instance.enabled;
+                    SimulateClick();
                 }
             }
         }
@@ -27,7 +29,7 @@ namespace LaneExtender
         {
             if (p.buttons.IsFlagSet(UIMouseButton.Left) && LaneExtenderTool.Instance != null)
             {
-                LaneExtenderTool.Instance.enabled = !LaneExtenderTool.Instance.enabled;
+                Singleton<ToolManager>.instance.m_properties.CurrentTool = LaneExtenderTool.Instance;
             }
         }
     }

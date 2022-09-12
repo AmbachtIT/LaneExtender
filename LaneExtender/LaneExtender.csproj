@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net3.5</TargetFramework>
 	  <LangVersion>9.0</LangVersion>
+	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
