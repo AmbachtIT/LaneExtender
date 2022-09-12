@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net3.5</TargetFramework>
 	  <LangVersion>9.0</LangVersion>
-	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
@@ -34,6 +33,9 @@
       <HintPath>$(ManagedDLLPath)\ICities.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="NodeController">
+      <HintPath>..\lib\NodeController.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>$(ManagedDLLPath)\UnityEngine.dll</HintPath>
 	  <Private>false</Private>
@@ -46,10 +48,6 @@
       <HintPath>$(ManagedDLLPath)\UnityEngine.UI.dll</HintPath>
       <Private>false</Private>
 	</Reference>
-  </ItemGroup>
-	
-  <ItemGroup>
-    <Folder Include="ModsCommon\" />
   </ItemGroup>
 
 </Project>

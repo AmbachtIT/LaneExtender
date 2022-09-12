@@ -5,7 +5,10 @@ using System.Text;
 using ColossalFramework;
 using ColossalFramework.Plugins;
 using ColossalFramework.UI;
+using Epic.OnlineServices.Presence;
+using ModsCommon;
 using ModsCommon.Utilities;
+using NodeController;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 
@@ -19,6 +22,7 @@ namespace LaneExtender
         public static LaneExtenderTool Instance { get; private set; }
         private LaneExtenderButton _button;
         private ushort _hoveringId = 0;
+        private bool _waitingForMouseButtonUp = false;
 
 
         public LaneExtenderTool()
@@ -43,12 +47,12 @@ namespace LaneExtender
 
         protected override void OnEnable()
         {
-            DebugOutputPanel.AddMessage(PluginManager.MessageType.Message, $"LaneExtenderTool: Enabled");
+            _log.Info($"LaneExtenderTool: Enabled");
         }
 
         protected override void OnDisable()
         {
-            DebugOutputPanel.AddMessage(PluginManager.MessageType.Message, $"LaneExtenderTool: Disabled");
+            _log.Info($"LaneExtenderTool: Disabled");
         }
 
         protected override void OnToolUpdate()
@@ -74,26 +78,102 @@ namespace LaneExtender
             };
             RayCast(input, out var output);
             _hoveringId = output.m_netSegment;
+
+            if (_waitingForMouseButtonUp)
+            {
+                if (Input.GetMouseButtonUp(0))
+                {
+                    _waitingForMouseButtonUp = false;
+                }
+            }
+            else
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (_hoveringId != 0)
+                    {
+                        Perform(ref GetHoveringSegment());
+                    }
+                    _waitingForMouseButtonUp = true;
+                }
+            }
+
         }
+
+        private void Perform(ref NetSegment segment)
+        {
+            var info = segment.Info;
+            _log.Info($"Clicked on segment: {info.name}");
+            LogNodeData("start", segment.m_startNode);
+            LogNodeData("start", segment.m_endNode);
+
+        }
+
+        private void LogNodeData(string prefix, ushort nodeId)
+        {
+            var node = NetManager.instance.m_nodes.m_buffer[nodeId];
+            _log.Info($"{prefix} node id    : {nodeId}");
+            _log.Info($"{prefix} node flags : {node.m_flags}");
+            var manager = SingletonManager<Manager>.Instance;
+            if (!manager.GetNodeData(nodeId, out var nodeData))
+            {
+                _log.Info($"{prefix} node has no node controller data");
+            }
+            else
+            {
+                _log.Info($"{prefix} node controller style: {nodeData.Style}");
+                foreach (var segmentId in node.SegmentIds())
+                {
+                    if (!manager.GetSegmentData(nodeId, segmentId, out var segmentData))
+                    {
+                        _log.Info($"{prefix} node segment {segmentId} has no node controller data");
+                    }
+                    else
+                    {
+                        _log.Info($"{prefix} node segment {segmentId} data id {segmentData.Offset}");
+                        _log.Info($"{prefix} node segment {segmentId} data absolute angle {segmentData.AbsoluteAngle}");
+                        _log.Info($"{prefix} node segment {segmentId} data rotate angle {segmentData.RotateAngle}");
+                    }
+                }
+            }
+        }
+
 
 
         public override void RenderOverlay(RenderManager.CameraInfo cameraInfo)
         {
             if (_hoveringId != 0)
             {
-                var buffer = NetManager.instance?.m_segments?.m_buffer;
-                if (buffer == null)
-                {
-                    return;
-                }
-                ref var segment = ref buffer[_hoveringId];
-                if (segment.Info != null)
-                {
-                    NetTool.RenderOverlay(cameraInfo, ref segment, _hoverColor, _hoverColor);
-                }
+                ref var segment = ref GetHoveringSegment();
+                var color = GetColor(segment);
+                NetTool.RenderOverlay(cameraInfo, ref segment, color, color);
             }
         }
 
-        private readonly Color _hoverColor = new Color32(0, 181, 255, 255);
+        private Color GetColor(NetSegment segment)
+        {
+            var info = segment.Info;
+            var road = Network.GetRoad(info.name);
+            if (road == null)
+            {
+                return Color.red;
+            }
+
+            var roadPlusOne = Network.GetRoad(road, road.LaneCount + 1);
+            if (roadPlusOne == null)
+            {
+                return Color.yellow;
+            }
+
+            return Color.blue;
+        }
+
+        private ref NetSegment GetHoveringSegment()
+        {
+            return ref NetManager.instance.m_segments.m_buffer[_hoveringId];
+        }
+
+        private readonly Logger _log = new Logger();
     }
+
 }

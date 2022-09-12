@@ -13,6 +13,13 @@ namespace LaneExtender
         public const string SettingsFileName = "LaneExtender";
 
 
+        public override void OnCreated(ILoading loading)
+        {
+            base.OnCreated(loading);
+
+        }
+
+
         public override void OnLevelLoaded(LoadMode mode)
         {
             if (ShouldInstallForGameMode(mode))
