@@ -11,16 +11,7 @@ namespace Ambacht.Common.CitiesSkylines.Net
     public static class NetExtensions
     {
 
-        public static void SetNetTypeWidthAnimation(this ushort segmentId, NetInfo info)
-        {
-            SimulationManager.instance.AddAction(() =>
-            {
-                segmentId = segmentId.SetNetType(info);
-                PlaySegmentEffect(segmentId, true);
-            });
-        }
-
-        private static ushort SetNetType(this ushort segmentId, NetInfo info)
+        public static ushort SetNetType(this ushort segmentId, NetInfo info)
         {
             var segment = segmentId.GetSegment();
             segmentId.RemoveSegment();
@@ -76,7 +67,7 @@ namespace Ambacht.Common.CitiesSkylines.Net
 
 
         private static void PlayEffect(BezierTrajectory trajectory, float halfWidth, bool create) => PlayEffect(new EffectInfo.SpawnArea(trajectory.Trajectory, halfWidth, 0f), create);
-        private static void PlaySegmentEffect(ushort segmentId, bool create) => PlayEffect(new EffectInfo.SpawnArea(new BezierTrajectory(segmentId).Trajectory, segmentId.GetSegment().Info.m_halfWidth, 0f), create);
+        public static void PlaySegmentEffect(this ushort segmentId, bool create) => PlayEffect(new EffectInfo.SpawnArea(new BezierTrajectory(segmentId).Trajectory, segmentId.GetSegment().Info.m_halfWidth, 0f), create);
         private static void PlayNodeEffect(ushort nodeId, bool create)
         {
             ref var node = ref nodeId.GetNode();

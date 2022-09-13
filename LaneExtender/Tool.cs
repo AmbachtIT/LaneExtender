@@ -96,26 +96,32 @@ namespace LaneExtender
 
             if (_waitingForMouseButtonUp)
             {
-                if (Input.GetMouseButtonUp(0))
+                if (Input.GetMouseButtonUp(0) && Input.GetMouseButtonUp(1))
                 {
                     _waitingForMouseButtonUp = false;
                 }
             }
             else
             {
-                if (Input.GetMouseButtonDown(0))
+                if (_hoveringId != 0)
                 {
-                    if (_hoveringId != 0)
+                    if (Input.GetMouseButtonDown(0))
                     {
-                        Perform(_hoveringId, ref GetHoveringSegment());
+                        Perform(_hoveringId, ref GetHoveringSegment(), 1);
+                        _waitingForMouseButtonUp = true;
                     }
-                    _waitingForMouseButtonUp = true;
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        Perform(_hoveringId, ref GetHoveringSegment(), -1);
+                        _waitingForMouseButtonUp = true;
+                    }
                 }
+
             }
 
         }
 
-        private void Perform(ushort segmentId, ref NetSegment segment)
+        private void Perform(ushort segmentId, ref NetSegment segment, int deltaLanes)
         {
             var info = segment.Info;
             var road = Network.GetRoad(info.name);
@@ -124,18 +130,17 @@ namespace LaneExtender
                 return;
             }
 
-            var roadPlusOne = Network.GetRoad(road, road.LaneCount + 1);
-            if (roadPlusOne == null)
+            var roadUpgraded = Network.GetRoad(road, road.LaneCount + deltaLanes);
+            if (roadUpgraded == null || !roadUpgraded.IsEnabled)
             {
                 return;
             }
 
-            if (!roadPlusOne.IsEnabled)
+            SimulationManager.instance.AddAction(() =>
             {
-                throw new InvalidOperationException($"Road is disabled: {roadPlusOne.Name}");
-            }
-
-            segmentId.SetNetTypeWidthAnimation(roadPlusOne.Info);
+                segmentId = segmentId.SetNetType(info);
+                segmentId.PlaySegmentEffect(true);
+            });
         }
 
 
@@ -181,12 +186,6 @@ namespace LaneExtender
             if (road == null)
             {
                 return Color.red;
-            }
-
-            var roadPlusOne = Network.GetRoad(road, road.LaneCount + 1);
-            if (roadPlusOne == null)
-            {
-                return Color.yellow;
             }
 
             return _colorBlue;
