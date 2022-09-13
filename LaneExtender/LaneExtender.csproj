@@ -21,6 +21,10 @@
   </PropertyGroup>
 	
   <ItemGroup>
+    <ProjectReference Include="..\Ambacht.Common.CitiesSkylines\Ambacht.Common.CitiesSkylines.csproj" />
+  </ItemGroup>
+	
+  <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>$(ManagedDLLPath)\Assembly-CSharp.dll</HintPath>
       <Private>false</Private>

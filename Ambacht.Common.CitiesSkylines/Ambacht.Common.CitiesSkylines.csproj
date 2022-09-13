@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net3.5</TargetFramework>
+		<LangVersion>9.0</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<SteamPath>~/Library/Application Support/Steam/</SteamPath>
+		<SteamPath Condition="! Exists ('$(SteamPath)')">$(ProgramFiles)\Steam</SteamPath>
+		<SteamPath Condition="! Exists ('$(SteamPath)')">$(Registry:HKEY_CURRENT_USER\Software\Valve\Steam@SteamPath)</SteamPath>
+		<CSPath>$(SteamPath)\steamapps\common\Cities_Skylines</CSPath>
+		<ManagedDLLPath>$(CSPath)\Cities_Data\Managed</ManagedDLLPath>
+		<ManagedDLLPath Condition="!  Exists ('$(ManagedDLLPath)')">..\dependencies</ManagedDLLPath>
+		<UnityPath>$(MSBuildExtensionsPath64)\..\Unity\</UnityPath>
+		<UnityPath Condition="! Exists ('$(UnityPath)')">..\Unity\</UnityPath>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(ManagedDLLPath)\Assembly-CSharp.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="ColossalManaged">
+			<HintPath>$(ManagedDLLPath)\ColossalManaged.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="ICities">
+			<HintPath>$(ManagedDLLPath)\ICities.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(ManagedDLLPath)\UnityEngine.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine.Networking">
+			<HintPath>$(ManagedDLLPath)\UnityEngine.Networking.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine.UI">
+			<HintPath>$(ManagedDLLPath)\UnityEngine.UI.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+	</ItemGroup>
+
+
+</Project>

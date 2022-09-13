@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Ambacht.Common.CitiesSkylines;
 using ColossalFramework;
 using ColossalFramework.Plugins;
 using ColossalFramework.UI;
@@ -14,18 +15,18 @@ using UnityEngine.Assertions.Must;
 
 namespace LaneExtender
 {
-    public class LaneExtenderTool : ToolBase
+    public class Tool : ToolBase
     {
 
-        public static readonly SavedInputKey ToggleKey = new SavedInputKey("toggleTool", LaneExtenderMod.SettingsFileName, SavedInputKey.Encode(KeyCode.E, true, false, false), true);
+        public static readonly SavedInputKey ToggleKey = new SavedInputKey("toggleTool", Mod.SettingsFileName, SavedInputKey.Encode(KeyCode.E, true, false, false), true);
 
-        public static LaneExtenderTool Instance { get; private set; }
-        private LaneExtenderButton _button;
+        public static Tool Instance { get; private set; }
+        private ToolButton _button;
         private ushort _hoveringId = 0;
         private bool _waitingForMouseButtonUp = false;
 
 
-        public LaneExtenderTool()
+        public Tool()
         {
             Instance = this;
         }
@@ -34,8 +35,10 @@ namespace LaneExtender
         {
             if (_button == null)
             {
-                _button = (LaneExtenderButton)UIView.GetAView().AddUIComponent(typeof(LaneExtenderButton));
+                _button = (ToolButton)UIView.GetAView().AddUIComponent(typeof(ToolButton));
             }
+
+            enabled = false;
         }
 
         public void Uninstall()
@@ -48,6 +51,8 @@ namespace LaneExtender
         protected override void OnEnable()
         {
             _log.Info($"LaneExtenderTool: Enabled");
+            enabled = true;
+
         }
 
         protected override void OnDisable()
@@ -58,6 +63,11 @@ namespace LaneExtender
         protected override void OnToolUpdate()
         {
             base.OnToolUpdate();
+
+            if (!enabled)
+            {
+                return;
+            }
 
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             var input = new RaycastInput(ray, Camera.main.farClipPlane)
@@ -105,7 +115,7 @@ namespace LaneExtender
             var info = segment.Info;
             _log.Info($"Clicked on segment: {info.name}");
             LogNodeData("start", segment.m_startNode);
-            LogNodeData("start", segment.m_endNode);
+            LogNodeData("end", segment.m_endNode);
 
         }
 
@@ -130,9 +140,7 @@ namespace LaneExtender
                     }
                     else
                     {
-                        _log.Info($"{prefix} node segment {segmentId} data id {segmentData.Offset}");
-                        _log.Info($"{prefix} node segment {segmentId} data absolute angle {segmentData.AbsoluteAngle}");
-                        _log.Info($"{prefix} node segment {segmentId} data rotate angle {segmentData.RotateAngle}");
+                        _log.LogFields(segmentData, $"{prefix} node segment {segmentId}", true);
                     }
                 }
             }
@@ -173,9 +181,9 @@ namespace LaneExtender
             return ref NetManager.instance.m_segments.m_buffer[_hoveringId];
         }
 
-        private readonly Logger _log = new Logger();
+        private readonly Log _log = Services.Log;
 
-        private readonly Color _colorBlue = new Color(128, 128, 255, 255);
+        private readonly Color _colorBlue = new Color32(0, 181, 255, 255);
 
     }
 

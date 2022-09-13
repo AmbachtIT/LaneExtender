@@ -1,11 +1,12 @@
 ﻿using System;
+using Ambacht.Common.CitiesSkylines;
 using ColossalFramework.Plugins;
 using ICities;
 using UnityEngine;
 
 namespace LaneExtender
 {
-    public partial class LaneExtenderMod : LoadingExtensionBase, IUserMod
+    public partial class Mod : LoadingExtensionBase, IUserMod
     {
         public string Name => "Lane Extender";
 
@@ -75,18 +76,18 @@ namespace LaneExtender
 
         public static void InstallMod()
         {
-            if (LaneExtenderTool.Instance == null)
+            if (Tool.Instance == null)
             {
-                ToolsModifierControl.toolController.gameObject.AddComponent<LaneExtenderTool>();
+                ToolsModifierControl.toolController.gameObject.AddComponent<Tool>();
             }
         }
 
         public static void UnInstallMod()
         {
-            LaneExtenderTool.Instance?.Uninstall();
+            Tool.Instance?.Uninstall();
         }
 
-        private readonly Logger _log = new Logger();
+        private readonly Log _log = Services.Log;
 
     }
 }

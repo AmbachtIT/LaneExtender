@@ -13,7 +13,7 @@ namespace LaneExtender
 
         private void Awake()
         {
-            AddKeyMapping("Toggle tool", LaneExtenderTool.ToggleKey);
+            AddKeyMapping("Toggle tool", Tool.ToggleKey);
         }
 
         private const string TemplateKeyBinding = "KeyBindingTemplate";

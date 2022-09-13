@@ -1,0 +1,210 @@
+﻿
+
+[LaneExtender] start node id    : 21870
+[LaneExtender] start node flags : Created, Original, Middle, Moveable, OnGround, OneWayOut, OneWayIn
+[LaneExtender] start node has no node controller data
+[LaneExtender] end node id    : 14202
+[LaneExtender] end node flags : Created, Original, Middle, Moveable, OnGround, OneWayOut, OneWayIn
+[LaneExtender] end node has no node controller data
+[NodeController] Create button on RoadsOptionPanel
+[NodeController] Button created
+[LaneExtender] LaneExtenderTool: Disabled
+[NodeController] On press shortcut
+[NodeController] Enable tool
+[NodeController] Set default panel position
+[NodeController] Disable tool
+[LaneExtender] LaneExtenderTool: Enabled
+
+
+
+[LaneExtender] Clicked on segment: Four Lane Highway
+[LaneExtender] start node id    : 21870
+[LaneExtender] start node flags : Created, Original, Junction, OnGround, OneWayOut, OneWayIn
+[LaneExtender] start node controller style: NodeController.CustomNode
+[LaneExtender] start node segment 20213.<NodeData>k__BackingField = NodeData(id:21870 type:Custom)
+[LaneExtender] start node segment 20213.<Id>k__BackingField = 20213
+[LaneExtender] start node segment 20213.<Index>k__BackingField = 0
+[LaneExtender] start node segment 20213.<RawSegmentBezier>k__BackingField = Bezier: (753.2, 275.0, 203.9) - (678.0, 274.8, 258.5)
+[LaneExtender] start node segment 20213.<SegmentBezier>k__BackingField = Bezier: (753.2, 275.0, 203.9) - (686.1, 274.8, 252.5)
+[LaneExtender] start node segment 20213.<LeftSide>k__BackingField = Left: _rawT=0.4246185; _minT=0; _maxT=0.9252713; _position=(737.6, 275.0, 199.0);
+[LaneExtender] start node segment 20213.<RightSide>k__BackingField = Right: _rawT=0.427104; _minT=0.02937919; _maxT=0.9248534; _position=(752.5, 275.0, 220.3);
+[LaneExtender] start node segment 20213.<AbsoluteAngle>k__BackingField = 2.529541
+[LaneExtender] start node segment 20213.<Weight>k__BackingField = 39
+[LaneExtender] start node segment 20213.<IsMainRoad>k__BackingField = True
+[LaneExtender] start node segment 20213.<IsRoad>k__BackingField = True
+[LaneExtender] start node segment 20213.<IsTunnel>k__BackingField = False
+[LaneExtender] start node segment 20213.<IsTrack>k__BackingField = False
+[LaneExtender] start node segment 20213.<IsPath>k__BackingField = False
+[LaneExtender] start node segment 20213.<IsDecoration>k__BackingField = False
+[LaneExtender] start node segment 20213.<IsNodeLess>k__BackingField = False
+[LaneExtender] start node segment 20213.<IsUntouchable>k__BackingField = False
+[LaneExtender] start node segment 20213.<PedestrianLaneCount>k__BackingField = 0
+[LaneExtender] start node segment 20213.<VehicleTwist>k__BackingField = 0
+[LaneExtender] start node segment 20213._offsetValue = 9.996456
+[LaneExtender] start node segment 20213._rotateValue = -0.2462884
+[LaneExtender] start node segment 20213._keepDefault = True
+[LaneExtender] start node segment 20213.<MinPossibleOffset>k__BackingField = 0
+[LaneExtender] start node segment 20213.<MaxPossibleOffset>k__BackingField = 1000
+[LaneExtender] start node segment 20213.<MinOffset>k__BackingField = 0
+[LaneExtender] start node segment 20213.<MaxOffset>k__BackingField = 82.90977
+[LaneExtender] start node segment 20213.<MinRotate>k__BackingField = -78.04462
+[LaneExtender] start node segment 20213.<MaxRotate>k__BackingField = 76.71357
+[LaneExtender] start node segment 20213.<SlopeAngle>k__BackingField = 0
+[LaneExtender] start node segment 20213.<TwistAngle>k__BackingField = 0
+[LaneExtender] start node segment 20213.<Shift>k__BackingField = 1.625
+[LaneExtender] start node segment 20213.<Stretch>k__BackingField = 1
+[LaneExtender] start node segment 20213.<NoMarkings>k__BackingField = False
+[LaneExtender] start node segment 20213.<IsSlope>k__BackingField = False
+[LaneExtender] start node segment 20213.<Collision>k__BackingField = True
+[LaneExtender] start node segment 20213._forceNodeLess = False
+[LaneExtender] start node segment 20213.<Position>k__BackingField = (745.1, 275.0, 209.7)
+[LaneExtender] start node segment 20213.<Direction>k__BackingField = (-0.8, 0.0, 0.6)
+
+[LaneExtender] start node segment 6922.<NodeData>k__BackingField = NodeData(id:21870 type:Custom)
+[LaneExtender] start node segment 6922.<Id>k__BackingField = 6922
+[LaneExtender] start node segment 6922.<Index>k__BackingField = 1
+[LaneExtender] start node segment 6922.<RawSegmentBezier>k__BackingField = Bezier: (754.2, 275.0, 205.2) - (833.3, 275.7, 151.4)
+[LaneExtender] start node segment 6922.<SegmentBezier>k__BackingField = Bezier: (754.2, 275.0, 205.2) - (833.3, 275.7, 151.4)
+[LaneExtender] start node segment 6922.<LeftSide>k__BackingField = Left: _rawT=0.3860016; _minT=0.3081757; _maxT=1; _position=(768.7, 275.0, 208.5);
+[LaneExtender] start node segment 6922.<RightSide>k__BackingField = Right: _rawT=0.3842038; _minT=0; _maxT=1; _position=(756.0, 275.0, 190.5);
+[LaneExtender] start node segment 6922.<AbsoluteAngle>k__BackingField = -0.6120518
+[LaneExtender] start node segment 6922.<Weight>k__BackingField = 33
+[LaneExtender] start node segment 6922.<IsMainRoad>k__BackingField = True
+[LaneExtender] start node segment 6922.<IsRoad>k__BackingField = True
+[LaneExtender] start node segment 6922.<IsTunnel>k__BackingField = False
+[LaneExtender] start node segment 6922.<IsTrack>k__BackingField = False
+[LaneExtender] start node segment 6922.<IsPath>k__BackingField = False
+[LaneExtender] start node segment 6922.<IsDecoration>k__BackingField = False
+[LaneExtender] start node segment 6922.<IsNodeLess>k__BackingField = False
+[LaneExtender] start node segment 6922.<IsUntouchable>k__BackingField = False
+[LaneExtender] start node segment 6922.<PedestrianLaneCount>k__BackingField = 0
+[LaneExtender] start node segment 6922.<VehicleTwist>k__BackingField = 0
+[LaneExtender] start node segment 6922._offsetValue = 9.994368
+[LaneExtender] start node segment 6922._rotateValue = 0.2406627
+[LaneExtender] start node segment 6922._keepDefault = True
+[LaneExtender] start node segment 6922.<MinPossibleOffset>k__BackingField = 0
+[LaneExtender] start node segment 6922.<MaxPossibleOffset>k__BackingField = 1000
+[LaneExtender] start node segment 6922.<MinOffset>k__BackingField = 0
+[LaneExtender] start node segment 6922.<MaxOffset>k__BackingField = 95.73489
+[LaneExtender] start node segment 6922.<MinRotate>k__BackingField = -42.07392
+[LaneExtender] start node segment 6922.<MaxRotate>k__BackingField = 78.3822
+[LaneExtender] start node segment 6922.<SlopeAngle>k__BackingField = 0
+[LaneExtender] start node segment 6922.<TwistAngle>k__BackingField = 0
+[LaneExtender] start node segment 6922.<Shift>k__BackingField = 0
+[LaneExtender] start node segment 6922.<Stretch>k__BackingField = 1
+[LaneExtender] start node segment 6922.<NoMarkings>k__BackingField = False
+[LaneExtender] start node segment 6922.<IsSlope>k__BackingField = False
+[LaneExtender] start node segment 6922.<Collision>k__BackingField = True
+[LaneExtender] start node segment 6922._forceNodeLess = False
+[LaneExtender] start node segment 6922.<Position>k__BackingField = (762.4, 275.0, 199.5)
+[LaneExtender] start node segment 6922.<Direction>k__BackingField = (0.8, 0.0, -0.6)
+
+
+[LaneExtender] end node id    : 14202
+[LaneExtender] end node flags : Created, Original, Junction, OnGround, OneWayOut, OneWayIn
+[LaneExtender] end node controller style: NodeController.CustomNode
+[LaneExtender] end node segment 13761.<NodeData>k__BackingField = NodeData(id:14202 type:Custom)
+[LaneExtender] end node segment 13761.<Id>k__BackingField = 13761
+[LaneExtender] end node segment 13761.<Index>k__BackingField = 0
+[LaneExtender] end node segment 13761.<RawSegmentBezier>k__BackingField = Bezier: (679.0, 274.8, 259.8) - (608.6, 274.6, 314.7)
+[LaneExtender] end node segment 13761.<SegmentBezier>k__BackingField = Bezier: (679.0, 274.8, 259.8) - (608.6, 274.6, 314.7)
+[LaneExtender] end node segment 13761.<LeftSide>k__BackingField = Left: _rawT=0.4025917; _minT=0.3215358; _maxT=1; _position=(664.4, 274.8, 257.0);
+[LaneExtender] end node segment 13761.<RightSide>k__BackingField = Right: _rawT=0.4050109; _minT=0.3234893; _maxT=1; _position=(677.7, 274.8, 274.6);
+[LaneExtender] end node segment 13761.<AbsoluteAngle>k__BackingField = 2.497195
+[LaneExtender] end node segment 13761.<Weight>k__BackingField = 33
+[LaneExtender] end node segment 13761.<IsMainRoad>k__BackingField = True
+[LaneExtender] end node segment 13761.<IsRoad>k__BackingField = True
+[LaneExtender] end node segment 13761.<IsTunnel>k__BackingField = False
+[LaneExtender] end node segment 13761.<IsTrack>k__BackingField = False
+[LaneExtender] end node segment 13761.<IsPath>k__BackingField = False
+[LaneExtender] end node segment 13761.<IsDecoration>k__BackingField = False
+[LaneExtender] end node segment 13761.<IsNodeLess>k__BackingField = False
+[LaneExtender] end node segment 13761.<IsUntouchable>k__BackingField = False
+[LaneExtender] end node segment 13761.<PedestrianLaneCount>k__BackingField = 0
+[LaneExtender] end node segment 13761.<VehicleTwist>k__BackingField = 0
+[LaneExtender] end node segment 13761._offsetValue = 9.99598
+[LaneExtender] end node segment 13761._rotateValue = -0.2811602
+[LaneExtender] end node segment 13761._keepDefault = True
+[LaneExtender] end node segment 13761.<MinPossibleOffset>k__BackingField = 0
+[LaneExtender] end node segment 13761.<MaxPossibleOffset>k__BackingField = 1000
+[LaneExtender] end node segment 13761.<MinOffset>k__BackingField = 0
+[LaneExtender] end node segment 13761.<MaxOffset>k__BackingField = 89.28061
+[LaneExtender] end node segment 13761.<MinRotate>k__BackingField = -42.47652
+[LaneExtender] end node segment 13761.<MaxRotate>k__BackingField = 42.04548
+[LaneExtender] end node segment 13761.<SlopeAngle>k__BackingField = 0
+[LaneExtender] end node segment 13761.<TwistAngle>k__BackingField = 0
+[LaneExtender] end node segment 13761.<Shift>k__BackingField = 0
+[LaneExtender] end node segment 13761.<Stretch>k__BackingField = 1
+[LaneExtender] end node segment 13761.<NoMarkings>k__BackingField = False
+[LaneExtender] end node segment 13761.<IsSlope>k__BackingField = False
+[LaneExtender] end node segment 13761.<Collision>k__BackingField = True
+[LaneExtender] end node segment 13761._forceNodeLess = False
+[LaneExtender] end node segment 13761.<Position>k__BackingField = (671.0, 274.8, 265.8)
+[LaneExtender] end node segment 13761.<Direction>k__BackingField = (-0.8, 0.0, 0.6)
+
+[LaneExtender] end node segment 20213.<NodeData>k__BackingField = NodeData(id:14202 type:Custom)
+[LaneExtender] end node segment 20213.<Id>k__BackingField = 20213
+[LaneExtender] end node segment 20213.<Index>k__BackingField = 1
+[LaneExtender] end node segment 20213.<RawSegmentBezier>k__BackingField = Bezier: (678.0, 274.8, 258.5) - (753.2, 275.0, 203.9)
+[LaneExtender] end node segment 20213.<SegmentBezier>k__BackingField = Bezier: (678.0, 274.8, 258.5) - (745.1, 275.0, 209.7)
+[LaneExtender] end node segment 20213.<LeftSide>k__BackingField = Left: _rawT=0.4271046; _minT=0.05934574; _maxT=0.9248516; _position=(693.9, 274.8, 262.9);
+[LaneExtender] end node segment 20213.<RightSide>k__BackingField = Right: _rawT=0.424618; _minT=0; _maxT=0.9252754; _position=(678.2, 274.8, 242.1);
+[LaneExtender] end node segment 20213.<AbsoluteAngle>k__BackingField = -0.6443982
+[LaneExtender] end node segment 20213.<Weight>k__BackingField = 39
+[LaneExtender] end node segment 20213.<IsMainRoad>k__BackingField = True
+[LaneExtender] end node segment 20213.<IsRoad>k__BackingField = True
+[LaneExtender] end node segment 20213.<IsTunnel>k__BackingField = False
+[LaneExtender] end node segment 20213.<IsTrack>k__BackingField = False
+[LaneExtender] end node segment 20213.<IsPath>k__BackingField = False
+[LaneExtender] end node segment 20213.<IsDecoration>k__BackingField = False
+[LaneExtender] end node segment 20213.<IsNodeLess>k__BackingField = False
+[LaneExtender] end node segment 20213.<IsUntouchable>k__BackingField = False
+[LaneExtender] end node segment 20213.<PedestrianLaneCount>k__BackingField = 0
+[LaneExtender] end node segment 20213.<VehicleTwist>k__BackingField = 0
+[LaneExtender] end node segment 20213._offsetValue = 9.996555
+[LaneExtender] end node segment 20213._rotateValue = 0.2741124
+[LaneExtender] end node segment 20213._keepDefault = True
+[LaneExtender] end node segment 20213.<MinPossibleOffset>k__BackingField = 0
+[LaneExtender] end node segment 20213.<MaxPossibleOffset>k__BackingField = 1000
+[LaneExtender] end node segment 20213.<MinOffset>k__BackingField = 0
+[LaneExtender] end node segment 20213.<MaxOffset>k__BackingField = 82.90997
+[LaneExtender] end node segment 20213.<MinRotate>k__BackingField = -75.65297
+[LaneExtender] end node segment 20213.<MaxRotate>k__BackingField = 78.06937
+[LaneExtender] end node segment 20213.<SlopeAngle>k__BackingField = 0
+[LaneExtender] end node segment 20213.<TwistAngle>k__BackingField = 0
+[LaneExtender] end node segment 20213.<Shift>k__BackingField = -1.625
+[LaneExtender] end node segment 20213.<Stretch>k__BackingField = 1
+[LaneExtender] end node segment 20213.<NoMarkings>k__BackingField = False
+[LaneExtender] end node segment 20213.<IsSlope>k__BackingField = False
+[LaneExtender] end node segment 20213.<Collision>k__BackingField = True
+[LaneExtender] end node segment 20213._forceNodeLess = False
+[LaneExtender] end node segment 20213.<Position>k__BackingField = (686.1, 274.8, 252.5)
+[LaneExtender] end node segment 20213.<Direction>k__BackingField = (0.8, 0.0, -0.6)
+
+
+[LaneExtender] LaneExtenderTool: Disabled
+[NodeController] On level unloading
+[NodeController] Create manager
+Waiting for simulation to quit...  [Core]
+PopsApi: Shutdown complete
+Setting up 12 worker threads for Enlighten.
+  Thread -> id: 41ec -> priority: 1 
+  Thread -> id: 53f8 -> priority: 1 
+  Thread -> id: 626c -> priority: 1 
+  Thread -> id: 94a4 -> priority: 1 
+  Thread -> id: 1b64 -> priority: 1 
+  Thread -> id: 9614 -> priority: 1 
+  Thread -> id: 480c -> priority: 1 
+  Thread -> id: 7e48 -> priority: 1 
+  Thread -> id: 37b4 -> priority: 1 
+  Thread -> id: 4658 -> priority: 1 
+  Thread -> id: 7f30 -> priority: 1 
+  Thread -> id: 8af8 -> priority: 1 
+Unloading Steamworks
+Simulation terminated  [Core]
+GameSettings Monitor Exiting...  [Settings - Internal]
+GameSettings terminated  [Settings - Internal]
+[NodeController] Disabled
+[NodeController] Disable failed  at (wrapper managed-to-native) UnityEngine.Behaviour:set_enabled (bool)
+  at ModsCommon.Utilities.DependenciesWatcher.SetState (Boolean state) [0x00000] in <filename unknown>:0 
+  at ModsCommon.BaseMod`1[TypeMod].OnDisabled () [0x00000] in <filename unknown>:0 

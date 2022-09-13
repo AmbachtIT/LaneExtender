@@ -7,7 +7,7 @@ using ICities;
 
 namespace LaneExtender
 {
-    public partial class LaneExtenderMod
+    public partial class Mod
     {
 
         public void OnSettingsUI(UIHelperBase helper)

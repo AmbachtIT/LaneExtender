@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace LaneExtender
 {
-    public class LaneExtenderButton : UIButton
+    public class ToolButton : UIButton
     {
 
 
@@ -18,7 +18,7 @@ namespace LaneExtender
         {
             if (!UIView.HasModalInput() && !UIView.HasInputFocus())
             {
-                if (LaneExtenderTool.ToggleKey.IsPressed(Event.current))
+                if (Tool.ToggleKey.IsPressed(Event.current))
                 {
                     SimulateClick();
                 }
@@ -27,9 +27,9 @@ namespace LaneExtender
 
         protected override void OnClick(UIMouseEventParameter p)
         {
-            if (p.buttons.IsFlagSet(UIMouseButton.Left) && LaneExtenderTool.Instance != null)
+            if (p.buttons.IsFlagSet(UIMouseButton.Left) && Tool.Instance != null)
             {
-                Singleton<ToolManager>.instance.m_properties.CurrentTool = LaneExtenderTool.Instance;
+                Singleton<ToolManager>.instance.m_properties.CurrentTool = Tool.Instance;
             }
         }
     }

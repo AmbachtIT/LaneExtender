@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaneExtender", "LaneExtender\LaneExtender.csproj", "{24AF58CE-A458-49BA-BCA2-E4F999C5DE06}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ambacht.Common.CitiesSkylines", "Ambacht.Common.CitiesSkylines\Ambacht.Common.CitiesSkylines.csproj", "{3219D326-BC9E-40AD-9BA2-9FF4CC60F8D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{24AF58CE-A458-49BA-BCA2-E4F999C5DE06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24AF58CE-A458-49BA-BCA2-E4F999C5DE06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24AF58CE-A458-49BA-BCA2-E4F999C5DE06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3219D326-BC9E-40AD-9BA2-9FF4CC60F8D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3219D326-BC9E-40AD-9BA2-9FF4CC60F8D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3219D326-BC9E-40AD-9BA2-9FF4CC60F8D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3219D326-BC9E-40AD-9BA2-9FF4CC60F8D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
