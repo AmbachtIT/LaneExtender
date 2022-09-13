@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Ambacht.Common.CitiesSkylines;
 using ColossalFramework.Plugins;
 using ICities;
@@ -17,20 +18,7 @@ namespace LaneExtender
 
         public override void OnCreated(ILoading loading)
         {
-            for (uint i = 0; i < PrefabCollection<NetInfo>.PrefabCount(); ++i)
-            {
-                var info = PrefabCollection<NetInfo>.GetPrefab(i);
-                if (info?.GetAI() is RoadAI)
-                {
-                    // This is a road prefab
-                    var road = Network.GetRoad(info.name);
-                    if (road != null)
-                    {
-                        road.Enable();
-                        _log.Info($"Enabled road {road.Name}");
-                    }
-                }
-            }
+
         }
 
 
@@ -79,6 +67,28 @@ namespace LaneExtender
             if (Tool.Instance == null)
             {
                 ToolsModifierControl.toolController.gameObject.AddComponent<Tool>();
+
+                var builder = new StringBuilder();
+                builder.AppendLine();
+                builder.AppendLine("-------------------------------");
+                builder.AppendLine("- Checking roads              -");
+                builder.AppendLine("-------------------------------");
+                for (uint i = 0; i < PrefabCollection<NetInfo>.PrefabCount(); i++)
+                {
+                    var info = PrefabCollection<NetInfo>.GetPrefab(i);
+                    if (info != null)
+                    {
+                        // This is a road prefab
+                        var road = Network.GetRoad(info.name);
+                        if (road != null)
+                        {
+                            road.SetInfo(info);
+                            builder.AppendLine($"{info.name}: {road.LaneCount} lanes");
+                        }
+                    }
+                }
+                builder.AppendLine("-------------------------------");
+                _log.Info(builder.ToString());
             }
         }
 
@@ -87,7 +97,7 @@ namespace LaneExtender
             Tool.Instance?.Uninstall();
         }
 
-        private readonly Log _log = Services.Log;
+        private static readonly Log _log = Services.Log;
 
     }
 }

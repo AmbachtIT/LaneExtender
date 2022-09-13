@@ -10,9 +10,17 @@ namespace LaneExtender
         public string Name { get; set; }
         public int LaneCount { get; set; }
 
-        public bool IsEnabled { get; private set; }
+        public bool IsEnabled => Info != null;
 
-        public void Enable() => IsEnabled = true;
+        public NetInfo Info { get; private set; }
 
+        public void SetInfo(NetInfo info)
+        {
+            if (Info != null)
+            {
+                throw new InvalidOperationException($"Net info has already been set");
+            }
+            this.Info = info;
+        }
     }
 }

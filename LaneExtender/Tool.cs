@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Ambacht.Common.CitiesSkylines;
+using Ambacht.Common.CitiesSkylines.Net;
+using Ambacht.Common.CitiesSkylines.Rendering;
 using ColossalFramework;
 using ColossalFramework.Plugins;
 using ColossalFramework.UI;
@@ -12,6 +14,8 @@ using ModsCommon.Utilities;
 using NodeController;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
+using UnityEngine.Networking.Types;
+using OverlayData = Ambacht.Common.CitiesSkylines.Rendering.OverlayData;
 
 namespace LaneExtender
 {
@@ -58,6 +62,7 @@ namespace LaneExtender
         protected override void OnDisable()
         {
             _log.Info($"LaneExtenderTool: Disabled");
+            enabled = false;
         }
 
         protected override void OnToolUpdate()
@@ -102,7 +107,7 @@ namespace LaneExtender
                 {
                     if (_hoveringId != 0)
                     {
-                        Perform(ref GetHoveringSegment());
+                        Perform(_hoveringId, ref GetHoveringSegment());
                     }
                     _waitingForMouseButtonUp = true;
                 }
@@ -110,42 +115,28 @@ namespace LaneExtender
 
         }
 
-        private void Perform(ref NetSegment segment)
+        private void Perform(ushort segmentId, ref NetSegment segment)
         {
             var info = segment.Info;
-            _log.Info($"Clicked on segment: {info.name}");
-            LogNodeData("start", segment.m_startNode);
-            LogNodeData("end", segment.m_endNode);
-
-        }
-
-        private void LogNodeData(string prefix, ushort nodeId)
-        {
-            var node = NetManager.instance.m_nodes.m_buffer[nodeId];
-            _log.Info($"{prefix} node id    : {nodeId}");
-            _log.Info($"{prefix} node flags : {node.m_flags}");
-            var manager = SingletonManager<Manager>.Instance;
-            if (!manager.GetNodeData(nodeId, out var nodeData))
+            var road = Network.GetRoad(info.name);
+            if (road == null)
             {
-                _log.Info($"{prefix} node has no node controller data");
+                return;
             }
-            else
-            {
-                _log.Info($"{prefix} node controller style: {nodeData.Style}");
-                foreach (var segmentId in node.SegmentIds())
-                {
-                    if (!manager.GetSegmentData(nodeId, segmentId, out var segmentData))
-                    {
-                        _log.Info($"{prefix} node segment {segmentId} has no node controller data");
-                    }
-                    else
-                    {
-                        _log.LogFields(segmentData, $"{prefix} node segment {segmentId}", true);
-                    }
-                }
-            }
-        }
 
+            var roadPlusOne = Network.GetRoad(road, road.LaneCount + 1);
+            if (roadPlusOne == null)
+            {
+                return;
+            }
+
+            if (!roadPlusOne.IsEnabled)
+            {
+                throw new InvalidOperationException($"Road is disabled: {roadPlusOne.Name}");
+            }
+
+            segmentId.SetNetTypeWidthAnimation(roadPlusOne.Info);
+        }
 
 
         public override void RenderOverlay(RenderManager.CameraInfo cameraInfo)
@@ -155,8 +146,33 @@ namespace LaneExtender
                 ref var segment = ref GetHoveringSegment();
                 var color = GetColor(segment);
                 NetTool.RenderOverlay(cameraInfo, ref segment, color, color);
+
+                RenderSegmentEnd(cameraInfo, segment.m_startNode);
+                RenderSegmentEnd(cameraInfo, segment.m_endNode);
             }
         }
+
+        private void RenderSegmentEnd(RenderManager.CameraInfo cameraInfo, ushort nodeId)
+        {
+            var overlay = new OverlayData(cameraInfo)
+            {
+                Color = Color.white
+            };
+            var node = NetManager.instance.m_nodes.m_buffer[nodeId];
+            node.m_position.RenderCircle(overlay, 10f);
+            var manager = SingletonManager<Manager>.Instance;
+            if (manager.GetNodeData(nodeId, out var nodeData))
+            {
+                foreach (var segmentId in node.SegmentIds())
+                {
+                    if (manager.GetSegmentData(nodeId, segmentId, out var segmentData))
+                    {
+                        segmentData.Position.RenderCircle(overlay, 5);
+                    }
+                }
+            }
+        }
+
 
         private Color GetColor(NetSegment segment)
         {

@@ -1,12 +1,8 @@
-﻿using ColossalFramework.Math;
-using ModsCommon.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Ambacht.Common.CitiesSkylines.Mathmatics;
+using ColossalFramework.Math;
 using UnityEngine;
 
-namespace LaneExtender.Common
+namespace Ambacht.Common.CitiesSkylines.Rendering
 {
     public static class RenderExtensions
     {
