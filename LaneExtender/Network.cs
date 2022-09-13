@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace LaneExtender
 {
@@ -27,19 +28,13 @@ namespace LaneExtender
             }
         };
 
-
-        public static RoadType GetRoad(string name)
-        {
-            return AllRoads().SingleOrDefault(r => r.Name == name);
-        }
-
-        public static RoadType GetRoad(RoadType type, int laneCount)
+        public static Network GetNetwork(string name)
         {
             foreach (var network in AllNetworks())
             {
-                if (network.RoadTypes.Contains(type))
+                if (network.GetRoad(name) != null)
                 {
-                    return network.RoadTypes.SingleOrDefault(r => r.LaneCount == laneCount);
+                    return network;
                 }
             }
 
@@ -47,14 +42,21 @@ namespace LaneExtender
         }
 
 
+
+        public RoadType GetRoad(string name)
+        {
+            return RoadTypes.SingleOrDefault(r => r.Name == name);
+        }
+
+        public RoadType GetRoad(int laneCount)
+        {
+            return RoadTypes.SingleOrDefault(r => r.LaneCount == laneCount);
+        }
+
+
         public static IEnumerable<Network> AllNetworks()
         {
             yield return Default;
-        }
-
-        public static IEnumerable<RoadType> AllRoads()
-        {
-            return AllNetworks().SelectMany(r => r.RoadTypes);
         }
 
     }

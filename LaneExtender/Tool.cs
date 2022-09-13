@@ -10,7 +10,6 @@ using ColossalFramework.Plugins;
 using ColossalFramework.UI;
 using Epic.OnlineServices.Presence;
 using ModsCommon;
-using ModsCommon.Utilities;
 using NodeController;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
@@ -93,104 +92,42 @@ namespace LaneExtender
             };
             RayCast(input, out var output);
             _hoveringId = output.m_netSegment;
+            if (_hoveringId != operation.SelectedId)
+            {
+                operation = new Operation(_hoveringId);
+            }
 
             if (_waitingForMouseButtonUp)
             {
-                if (Input.GetMouseButtonUp(0) && Input.GetMouseButtonUp(1))
+                if (!Input.GetMouseButtonDown(0) && !Input.GetMouseButtonDown(1))
                 {
                     _waitingForMouseButtonUp = false;
                 }
             }
             else
             {
-                if (_hoveringId != 0)
+                if (Input.GetMouseButtonDown(0))
                 {
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        Perform(_hoveringId, ref GetHoveringSegment(), 1);
-                        _waitingForMouseButtonUp = true;
-                    }
-                    if (Input.GetMouseButtonDown(1))
-                    {
-                        Perform(_hoveringId, ref GetHoveringSegment(), -1);
-                        _waitingForMouseButtonUp = true;
-                    }
+                    operation.ChangeLanes(1);
+                    _waitingForMouseButtonUp = true;
                 }
-
+                if (Input.GetMouseButtonDown(1))
+                {
+                    operation.ChangeLanes(-1);
+                    _waitingForMouseButtonUp = true;
+                }
             }
 
         }
 
-        private void Perform(ushort segmentId, ref NetSegment segment, int deltaLanes)
-        {
-            var info = segment.Info;
-            var road = Network.GetRoad(info.name);
-            if (road == null)
-            {
-                return;
-            }
-
-            var roadUpgraded = Network.GetRoad(road, road.LaneCount + deltaLanes);
-            if (roadUpgraded == null || !roadUpgraded.IsEnabled)
-            {
-                return;
-            }
-
-            SimulationManager.instance.AddAction(() =>
-            {
-                segmentId = segmentId.SetNetType(info);
-                segmentId.PlaySegmentEffect(true);
-            });
-        }
-
+        private Operation operation = new Operation(0);
 
         public override void RenderOverlay(RenderManager.CameraInfo cameraInfo)
         {
-            if (_hoveringId != 0)
-            {
-                ref var segment = ref GetHoveringSegment();
-                var color = GetColor(segment);
-                NetTool.RenderOverlay(cameraInfo, ref segment, color, color);
-
-                RenderSegmentEnd(cameraInfo, segment.m_startNode);
-                RenderSegmentEnd(cameraInfo, segment.m_endNode);
-            }
+            operation.RenderOverlay(cameraInfo);
         }
 
-        private void RenderSegmentEnd(RenderManager.CameraInfo cameraInfo, ushort nodeId)
-        {
-            var overlay = new OverlayData(cameraInfo)
-            {
-                Color = Color.white
-            };
-            var node = NetManager.instance.m_nodes.m_buffer[nodeId];
-            node.m_position.RenderCircle(overlay, 10f);
-            var manager = SingletonManager<Manager>.Instance;
-            if (manager.GetNodeData(nodeId, out var nodeData))
-            {
-                foreach (var segmentId in node.SegmentIds())
-                {
-                    if (manager.GetSegmentData(nodeId, segmentId, out var segmentData))
-                    {
-                        segmentData.Position.RenderCircle(overlay, 5);
-                    }
-                }
-            }
-        }
-
-
-        private Color GetColor(NetSegment segment)
-        {
-            var info = segment.Info;
-            var road = Network.GetRoad(info.name);
-            if (road == null)
-            {
-                return Color.red;
-            }
-
-            return _colorBlue;
-        }
-
+       
         private ref NetSegment GetHoveringSegment()
         {
             return ref NetManager.instance.m_segments.m_buffer[_hoveringId];

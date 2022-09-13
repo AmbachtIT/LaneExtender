@@ -86,5 +86,88 @@ namespace Ambacht.Common.CitiesSkylines.Net
 
         private static BezierTrajectory GetTrajectory(Point first, Point second) => new BezierTrajectory(first.Position, first.ForwardDirection, second.Position, second.BackwardDirection);*/
 
+        public static void UpdateOnceSegment(this NetManager instance, ushort segmentId)
+        {
+            instance.m_updatedSegments[segmentId >> 6] |= (ulong)(1L << segmentId);
+            instance.m_segmentsUpdated = true;
+        }
+        public static void UpdateOnceNode(this NetManager instance, ushort nodeId)
+        {
+            instance.m_updatedNodes[nodeId >> 6] |= (ulong)(1L << nodeId);
+            instance.m_nodesUpdated = true;
+        }
+
+        public static IEnumerable<NetSegment> Segments(this NetNode node)
+        {
+            for (var i = 0; i < 8; i += 1)
+            {
+                var segment = node.GetSegment(i);
+                if (segment != 0)
+                    yield return GetSegment(segment);
+            }
+        }
+        public static IEnumerable<ushort> SegmentIds(this NetNode node)
+        {
+            for (var i = 0; i < 8; i += 1)
+            {
+                var segment = node.GetSegment(i);
+                if (segment != 0)
+                    yield return segment;
+            }
+        }
+        public static IEnumerable<NetNode> Nodes(this NetSegment segment)
+        {
+            yield return segment.m_startNode.GetNode();
+            yield return segment.m_endNode.GetNode();
+        }
+        public static IEnumerable<ushort> NodeIds(this NetSegment segment)
+        {
+            yield return segment.m_startNode;
+            yield return segment.m_endNode;
+        }
+        public static IEnumerable<NetLane> GetLanes(this NetSegment segment)
+        {
+            NetLane lane;
+            for (var laneId = segment.m_lanes; laneId != 0; laneId = lane.m_nextLane)
+            {
+                lane = GetLane(laneId);
+                yield return lane;
+            }
+        }
+        public static IEnumerable<uint> GetLaneIds(this NetSegment segment)
+        {
+            for (var laneId = segment.m_lanes; laneId != 0; laneId = GetLane(laneId).m_nextLane)
+                yield return laneId;
+        }
+        public static IEnumerable<uint> GetLaneIds(this uint laneId)
+        {
+            for (; laneId != 0; laneId = GetLane(laneId).m_nextLane)
+                yield return laneId;
+        }
+        public static IEnumerable<uint> GetLaneIds(this NetSegment segment, bool? startNode = null, NetInfo.LaneType laneType = NetInfo.LaneType.All, VehicleInfo.VehicleType vehicleType = VehicleInfo.VehicleType.All)
+        {
+            var lanesInfo = segment.Info.m_lanes;
+            var index = 0;
+            var laneId = segment.m_lanes;
+            for (; laneId != 0 && index < lanesInfo.Length; Next(ref index, ref laneId))
+            {
+                if (!lanesInfo[index].m_laneType.IsFlagSet(laneType))
+                    continue;
+                if (!lanesInfo[index].m_vehicleType.IsFlagSet(vehicleType))
+                    continue;
+                if (startNode != null && startNode.Value ^ (lanesInfo[index].m_finalDirection == NetInfo.Direction.Forward) ^ !segment.IsInvert())
+                    continue;
+
+                yield return laneId;
+            }
+            static void Next(ref int index, ref uint laneId)
+            {
+                index += 1;
+                laneId = GetLane(laneId).m_nextLane;
+            }
+        }
+
+        public static ref NetLane GetLane(this uint laneId) => ref NetManager.instance.m_lanes.m_buffer[laneId];
+
     }
 }

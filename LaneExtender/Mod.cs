@@ -79,7 +79,8 @@ namespace LaneExtender
                     if (info != null)
                     {
                         // This is a road prefab
-                        var road = Network.GetRoad(info.name);
+                        var network = Network.GetNetwork(info.name);
+                        var road = network?.GetRoad(info.name);
                         if (road != null)
                         {
                             road.SetInfo(info);
