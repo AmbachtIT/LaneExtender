@@ -94,7 +94,7 @@ namespace LaneExtender
             _hoveringId = output.m_netSegment;
             if (_hoveringId != operation.SelectedId)
             {
-                operation = new Operation(_hoveringId);
+                operation.Init(_hoveringId);
             }
 
             if (_waitingForMouseButtonUp)
@@ -120,7 +120,7 @@ namespace LaneExtender
 
         }
 
-        private Operation operation = new Operation(0);
+        private Operation operation = new Operation();
 
         public override void RenderOverlay(RenderManager.CameraInfo cameraInfo)
         {

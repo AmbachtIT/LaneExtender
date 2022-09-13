@@ -1,0 +1,8 @@
+﻿TODO:
+* Cost support
+* Add tooltip (https://github.com/taibenvenuti/BuildingAnarchy)
+* Workshop info
+* Logo
+* Support for splitting of lane
+* Support for IMT
+* Support for other road types
