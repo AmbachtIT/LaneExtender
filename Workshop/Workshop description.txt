@@ -1,0 +1,42 @@
+[HR][/HR]
+[h1]Overview[/h1]
+[h2]This mod allows you to change the number of lanes in your highway without breaking alignment.[/h2]
+Node Controller allows you to create beautiful smooth intersections. This mod makes the common use case of lane changes much easier. You can add or subtract a lane with a single click. Nodes
+
+[h2]Mod activation[/h2]
+[olist]
+[*] Press CTRL-E (hotkey can be reassigned in the options menu)
+[/olist]
+
+[h2]Usage[/h2]
+After activating the mod, hover over a segment. If extending the 
+
+[h2]Requirements[/h2]
+[list]
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2472062376]Node Controller Renewal[/url]. This mod could not have built without it.
+[*] 
+[/list]
+
+[h2]Current limitations[/h2]
+Even with Node Controller, manipulating the node system is not trivial. Therefore, there are a few limitations to keep everything a stable as possible. In the future, I might be able to take away some of these limitations.
+[list]
+[*] The mod only works with vanilla highway assets.
+[*] The mod does not work on intersections.
+[/list]
+
+
+[h2]Road map[/h2]
+[list]
+[*] Unified UI integration
+[*] Support for other networks. Currently, only the vanilla and mass transit highways are supported. In fact, you need Mass Transit
+[*] Cost support
+[*] Add support for creating exits/entrances
+[/list]
+
+[h2]Thanks and acknowledgements[/h2]
+[list]
+[*] Special thanks to [url=https://steamcommunity.com/profiles/76561198063330220]MacSergey[/url]: Author of the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2472062376]Node Controller Renewal[/url] mod. The functionality of this mode could not be implemented without it and I have learned much from its source code.
+
+
+[*] [url=https://steamcommunity.com/id/TPBDev]TPB[/url]: Author of the [url=]Building Anarchy mod[/url].
+[/list]

@@ -1,8 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-<PropertyGroup>
-	<TargetFramework>net3.5</TargetFramework>
-	<LangVersion>9.0</LangVersion>
-</PropertyGroup>
-
-</Project>

@@ -5,7 +5,12 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaneExtender", "LaneExtender\LaneExtender.csproj", "{24AF58CE-A458-49BA-BCA2-E4F999C5DE06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ambacht.Common.CitiesSkylines", "Ambacht.Common.CitiesSkylines\Ambacht.Common.CitiesSkylines.csproj", "{3219D326-BC9E-40AD-9BA2-9FF4CC60F8D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ambacht.Common.CitiesSkylines", "Ambacht.Common.CitiesSkylines\Ambacht.Common.CitiesSkylines.csproj", "{3219D326-BC9E-40AD-9BA2-9FF4CC60F8D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workshop", "Workshop", "{22A48428-D600-46C8-9711-F834933D78AB}"
+	ProjectSection(SolutionItems) = preProject
+		Workshop\Workshop description.txt = Workshop\Workshop description.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
